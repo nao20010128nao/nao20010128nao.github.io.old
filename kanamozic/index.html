@@ -9,6 +9,7 @@
     <script type="text/javascript" src="http://nao20010128nao.github.io/kanamozic/kanamozic.js"></script>
     <script type="text/javascript">
         $(function () {
+            $("textarea#plain").text("日本語");
             $("button#encode")
                 .click(function () {
                     var text = $("textarea#plain").text();
@@ -20,9 +21,7 @@
 </head>
 <body>
     <p>Plain Text:</p>
-    <textarea id="plain">
-        日本語
-    </textarea>
+    <textarea id="plain">日本語</textarea>
     <br />
     <button id="encode">↓ENCODE</button>
     <button id="decode">↑DECODE</button>
