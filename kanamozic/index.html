@@ -11,14 +11,14 @@
         $(function () {
             $("textarea#plain").text("日本語");
             function performEncode() {
-                var text = $("textarea#plain").text();
+                var text = $("textarea#plain").value();
                 var encoded = Kanamozic.encode(text, 0);
-                $("textarea#encoded").text(encoded);
+                $("textarea#encoded").value(encoded);
             }
             function performDecode() {
-                var text = $("textarea#encoded").text();
+                var text = $("textarea#encoded").value();
                 var decoded = Kanamozic.decode(text, 0);
-                $("textarea#plain").text(decoded);
+                $("textarea#plain").value(decoded);
             }
         });
     </script>
