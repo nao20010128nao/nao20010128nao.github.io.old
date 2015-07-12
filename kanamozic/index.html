@@ -12,11 +12,13 @@
             $("textarea#plain").text("日本語");
             function performEncode() {
                 var text = $("textarea#plain").val();
+                alert(text);
                 var encoded = Kanamozic.encode(text, 0);
                 $("textarea#encoded").text(encoded);
             }
             function performDecode() {
                 var text = $("textarea#encoded").val();
+                alert(text);
                 var decoded = Kanamozic.decode(text, 0);
                 $("textarea#plain").text(decoded);
             }
