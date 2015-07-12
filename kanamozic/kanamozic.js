@@ -29,7 +29,7 @@
         for (var i = 0; i < s.length ; i++) {
             var value = s.charAt(i);
             var offset = FULL_JPNLETTERS.indexOf(value);
-            var requiredOffset = (offset + key) % FULL_JPNLETTERS.length();
+            var requiredOffset = (offset + key) % FULL_JPNLETTERS.length;
             buf += FULL_JPNLETTERS.charAt(requiredOffset);
         }
         return buf;
@@ -40,7 +40,7 @@
         for (var i = 0; i < s.length; i++) {
             var value = s.charAt(i);
             var offset = CONVERT_ENGLETTERS.indexOf(value);
-            var requiredOffset = (offset + key) % CONVERT_JPNLETTERS.length();
+            var requiredOffset = (offset + key) % CONVERT_JPNLETTERS.length;
             buf += CONVERT_JPNLETTERS.charAt(requiredOffset);
         }
         return buf;
