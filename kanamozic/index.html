@@ -9,7 +9,12 @@
     <script type="text/javascript" src="https://github.com/nao20010128nao/Kanamozic.js/raw/master/kanamozic.js"></script>
     <script type="text/javascript">
         $(function () {
-
+            $("button#encode")
+                .click(function () {
+                    var text = $("textarea#plain").text();
+                    var encoded = Kanamozic.encode(text);
+                    $("textarea#encoded").text(encoded);
+                });
         });
     </script>
 </head>
@@ -17,8 +22,10 @@
     <p>Plain Text:</p>
     <textarea id="plain">
         日本語
-    </textarea><br />
-    <button></button>
+    </textarea>
+    <br />
+    <button id="encode">↓ENCODE</button>
+    <button id="decode">↓DECODE</button>
     <p>Encoded Text:</p>
     <textarea id="encoded"></textarea>
 </body>
