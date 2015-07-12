@@ -12,7 +12,7 @@
             $("button#encode")
                 .click(function () {
                     var text = $("textarea#plain").text();
-                    var encoded = Kanamozic.encode(text);
+                    var encoded = Kanamozic.encode(text, 0);
                     $("textarea#encoded").text(encoded);
                 });
         });
