@@ -16,6 +16,12 @@
                     var encoded = Kanamozic.encode(text, 0);
                     $("textarea#encoded").text(encoded);
                 });
+            $("button#decode")
+                    .click(function () {
+                        var text = $("textarea#encoded").text();
+                        var decoded = Kanamozic.decode(text, 0);
+                        $("textarea#plain").text(decoded);
+                    });
         });
     </script>
 </head>
