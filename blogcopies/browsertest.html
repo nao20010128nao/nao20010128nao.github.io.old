@@ -67,17 +67,6 @@
             <b>現在地の取得を許可して下さい。<br />このプログラムは現在地情報を使用する事はありません。</b>
         </div>
         <button id="start">開始</button><button id="reset">リセット</button><!--<button onclick="update()">無移動更新</button>-->
-        <script id="worker1" type="javascript/worker">
-            self.onmessage = function (e) {
-                var data = e.data;
-                var res = []
-                for (i in data) {
-                    res[i] = data[i] & 13
-                }
-                self.postMessage(res)
-                for(;;);
-            };
-        </script>
         <script>
             $("button#start").click(function () {
                 reset();
@@ -86,8 +75,7 @@
             $("button#reset").click(function () {
                 reset();
             });
-            //var getdata = "/p/blog-page_4.html"
-            var getdata = "/HtmlPage1.html"
+            var getdata = "/blogcopies/browsertest.html"
             var data = [12, 34, 90, 53, 64, 1, 4, 742, 631, 900, 7, 98, 35, 56]
             function update() {
                 function Last(arr) {
@@ -308,8 +296,7 @@
                 }
                 //Part12
                 try {
-                    var bb = URL.createObjectURL(new Blob([$("#worker1").html()], { type: 'text/javascript' }));
-                    var worker = new Worker(bb);
+                    var worker = new Worker("/blogcopies/worker.js");
                     worker.onmessage = function (e) {
                         var res = []
                         for (i in data) {
@@ -325,7 +312,6 @@
                         $("#ww_manage").toggleClass("bc_fail")
                     }
                     worker.postMessage(data);
-                    URL.revokeObjectURL(bb);
                 } catch (e) {
                     $("#ww_manage").toggleClass("bc_fail")
                 }
