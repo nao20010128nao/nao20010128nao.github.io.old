@@ -196,14 +196,17 @@
                 }
                 //Part6
                 try {
-                    $("div#gp_alert").attr("hidden", false)
                     if (navigator.geolocation) {
+                        $("div#gp_alert").attr("hidden", false)
                         navigator.geolocation.getCurrentPosition(function (e) {
                             $("div#gp_read").toggleClass("bc_sucess")
                             $("div#gp_alert").attr("hidden", true)
                         }, function (e) {
+                            $("#gp_read").toggleClass("bc_fail")
                             $("div#gp_alert").attr("hidden", true)
                         }, { enableHighAccuracy: true })
+                    } else {
+                        $("#gp_read").toggleClass("bc_fail")
                     }
                 } catch (e) {
                     $("#gp_read").toggleClass("bc_fail")
