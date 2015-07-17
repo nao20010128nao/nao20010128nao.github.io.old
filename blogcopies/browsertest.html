@@ -102,10 +102,16 @@
                 $(".bc_atte").toggleClass("bc_atte");
             }
             function createXMLHttpRequest(a, e, i) {
-                if (XMLHttpRequest) { return new XMLHttpRequest(); }
+                if (XMLHttpRequest) return new XMLHttpRequest();
                 if (ActiveXObject) {
-                    a = "Msxml2.XMLHTTP."; a = ["Microsoft.XMLHTTP", a + "3.0", a + "6.0"];
-                    for (i = 3; i--;) { try { return new ActiveXObject(a[i]) } catch (e) { } }
+                    a = "Msxml2.XMLHTTP.";
+                    a = ["Microsoft.XMLHTTP", a + "3.0", a + "6.0"];
+                    for (i = 3; i--;) {
+                        try {
+                            return new ActiveXObject(a[i]);
+                        } catch (e) {
+                        }
+                    }
                 } return null;
             }
             function arrayEquals(a, b) {
@@ -118,9 +124,8 @@
                 }
                 if (a.length != b.length) return false;
                 if (a == b) return true;
-                for (var i = 0; i < a.length; i++) {
+                for (var i = 0; i < a.length; i++)
                     if (a[i] != b[i]) return false;
-                }
                 return true;
             }
 
@@ -130,11 +135,10 @@
                 try {
                     $("#dom_testarea").html("<p id='bench_test'>test</p>");
                     var subp = $("#bench_test");
-                    if (subp.html() == "test") {
+                    if (subp.html() == "test")
                         $("#dom_make").toggleClass("bc_sucess");
-                    } else {
+                    else
                         throw null;
-                    }
                 } catch (e) {
                     $("#dom_make,#dom_delete").toggleClass("bc_fail");
                     passp2 = true;
@@ -143,11 +147,10 @@
                 if (!passp2) {
                     try {
                         $("#bench_test").remove();
-                        if ($("#dom_testarea").html() == "") {
+                        if ($("#dom_testarea").html() == "")
                             $("#dom_delete").toggleClass("bc_sucess");
-                        } else {
+                        else
                             $("#dom_delete").toggleClass("bc_fail");
-                        }
                     } catch (e) {
                         $("#dom_delete").toggleClass("bc_fail");
                     }
@@ -156,11 +159,10 @@
                 try {
                     var bkcb = clipboardData.getData("text");
                     clipboardData.setData("text", "ranranru");
-                    if (clipboardData.getData("text") == "ranranru") {
+                    if (clipboardData.getData("text") == "ranranru")
                         $("#cb_manage").toggleClass("bc_sucess");
-                    } else {
+                    else
                         $("#cb_manage").toggleClass("bc_fail");
-                    }
                     clipboardData.setData("text", bkcb);
                 } catch (e) {
                     $("#cb_manage").toggleClass("bc_fail");
@@ -169,15 +171,13 @@
                 try {
                     if (localStorage) {
                         localStorage.setItem("test", "ranranru");
-                        if (localStorage.getItem("test") == "ranranru") {
+                        if (localStorage.getItem("test") == "ranranru")
                             $("#ls_manage").toggleClass("bc_sucess");
-                        } else {
+                        else
                             $("#ls_manage").toggleClass("bc_fail");
-                        }
                         localStorage.setItem("test", "");
-                    } else {
+                    } else
                         $("#ls_manage").toggleClass("bc_fail");
-                    }
                 } catch (e) {
                     $("#ls_manage").toggleClass("bc_fail");
                 }
@@ -186,14 +186,12 @@
                 try {
                     if (sessionStorage) {
                         sessionStorage.setItem("test", "ranranru");
-                        if (sessionStorage.getItem("test") == "ranranru") {
+                        if (sessionStorage.getItem("test") == "ranranru")
                             $("#ss_manage").toggleClass("bc_sucess");
-                        } else {
+                        else
                             $("#ss_manage").toggleClass("bc_fail");
-                        }
-                    } else {
+                    } else
                         $("#ss_manage").toggleClass("bc_fail");
-                    }
                     sessionStorage.setItem("test", "");
                 } catch (e) {
                     $("#ss_manage").toggleClass("bc_fail");
@@ -209,9 +207,8 @@
                             $("#gp_read").toggleClass("bc_fail");
                             $("div#gp_alert").attr("hidden", true);
                         }, { enableHighAccuracy: true });
-                    } else {
+                    } else
                         $("#gp_read").toggleClass("bc_fail");
-                    }
                 } catch (e) {
                     $("#gp_read").toggleClass("bc_fail");
                 }
@@ -219,21 +216,20 @@
                 try {
                     document.cookie = "test=ranranru";
                     document.cookie.split("; ").forEach(function (e) {
-                        if (e == "test=ranranru") {
+                        if (e == "test=ranranru")
                             $("#ck_manage").toggleClass("bc_sucess");
-                        } else {
+                        else
                             $("#ck_manage").toggleClass("bc_fail");
-                        }
-                    })
+                    });
                     document.cookie = "test=";
                 } catch (e) {
                     $("#ck_manage").toggleClass("bc_fail");
                 }
                 //Part8,9,10,11
                 try {
-                    if (!createXMLHttpRequest()) {
+                    if (!createXMLHttpRequest())
                         $("div[id^=\"aj_\"]").toggleClass("bc_fail");
-                    } else {
+                    else {
                         //Part8
                         try {
                             $.ajax({
@@ -315,14 +311,12 @@
                     var worker = new Worker("/blogcopies/worker.js");
                     worker.onmessage = function (e) {
                         var res = []
-                        for (i in data) {
+                        for (i in data)
                             res[i] = data[i] & 13
-                        }
-                        if (arrayEquals(res, e.data)) {
+                        if (arrayEquals(res, e.data))
                             $("#ww_manage").toggleClass("bc_sucess");
-                        } else {
+                        else
                             $("#ww_manage").toggleClass("bc_atte");
-                        }
                     }
                     worker.onerror = function (e) {
                         $("#ww_manage").toggleClass("bc_fail");
