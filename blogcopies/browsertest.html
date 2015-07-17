@@ -65,7 +65,7 @@
         <div hidden="" id="gp_alert" style="color: red; font-size: 20px;">
             <b>現在地の取得を許可して下さい。<br />このプログラムは現在地情報を使用する事はありません。</b>
         </div>
-        <button onclick="reset(); start();">開始</button><button onclick="reset()">リセット</button><!--<button onclick="update()">無移動更新</button>-->
+        <button id="start">開始</button><button id="reset">リセット</button><!--<button onclick="update()">無移動更新</button>-->
         <script id="worker1" type="javascript/worker">
             self.onmessage = function (e) {
                 var data = e.data;
@@ -78,6 +78,13 @@
             };
         </script>
         <script>
+            $("button#start").click(function () {
+                reset();
+                start();
+            });
+            $("button#reset").click(function () {
+                reset();
+            });
             //var getdata = "/p/blog-page_4.html"
             var getdata = "/HtmlPage1.html"
             var data = [12, 34, 90, 53, 64, 1, 4, 742, 631, 900, 7, 98, 35, 56]
