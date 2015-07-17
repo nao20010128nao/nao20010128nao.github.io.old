@@ -75,35 +75,34 @@
             $("button#reset").click(function () {
                 reset();
             });
-            var getdata = "/blogcopies/browsertest.html"
-            var data = [12, 34, 90, 53, 64, 1, 4, 742, 631, 900, 7, 98, 35, 56]
+            var getdata = "/blogcopies/browsertest.html";
+            var data = [12, 34, 90, 53, 64, 1, 4, 742, 631, 900, 7, 98, 35, 56];
             function update() {
                 function Last(arr) {
-                    return arr[arr.length - 1]
+                    return arr[arr.length - 1];
                 }
-                var dirandfn = Last(location.href.split(location.host))
+                var dirandfn = Last(location.href.split(location.host));
                 $.ajax({
                     cache: false,
                     dataType: "text",
                     error: function (a, b, c) {
-                        alert("更新に失敗しました。\nブラウザー側からウェブページを更新して下さい。")
+                        alert("更新に失敗しました。\nブラウザー側からウェブページを更新して下さい。");
                     },
                     success: function (a, b) {
-                        //$("#checkcorner").html($(a).find("div#checkcorner").text())
-                        alert($(a).find("#checkcorner").text())
-                        alert($("div#checkcorner", a).text())
+                        alert($(a).find("#checkcorner").text());
+                        alert($("div#checkcorner", a).text());
                     },
                     type: "GET",
                     url: dirandfn
                 })
             }
             function reset() {
-                $(".bc_sucess").toggleClass("bc_sucess")
-                $(".bc_fail").toggleClass("bc_fail")
-                $(".bc_atte").toggleClass("bc_atte")
+                $(".bc_sucess").toggleClass("bc_sucess");
+                $(".bc_fail").toggleClass("bc_fail");
+                $(".bc_atte").toggleClass("bc_atte");
             }
             function createXMLHttpRequest(a, e, i) {
-                if (XMLHttpRequest) { return new XMLHttpRequest() }
+                if (XMLHttpRequest) { return new XMLHttpRequest(); }
                 if (ActiveXObject) {
                     a = "Msxml2.XMLHTTP."; a = ["Microsoft.XMLHTTP", a + "3.0", a + "6.0"];
                     for (i = 3; i--;) { try { return new ActiveXObject(a[i]) } catch (e) { } }
@@ -126,113 +125,114 @@
             }
 
             function start() {
-                var passp2 = false
+                var passp2 = false;
                 //Part1
                 try {
-                    $("#dom_testarea").html("<p id='bench_test'>test</p>")
-                    var subp = $("#bench_test")
+                    $("#dom_testarea").html("<p id='bench_test'>test</p>");
+                    var subp = $("#bench_test");
                     if (subp.html() == "test") {
                         $("#dom_make").toggleClass("bc_sucess");
                     } else {
                         throw null;
                     }
                 } catch (e) {
-                    $("#dom_make,#dom_delete").toggleClass("bc_fail"); passp2 = true
+                    $("#dom_make,#dom_delete").toggleClass("bc_fail");
+                    passp2 = true;
                 }
                 //Part2
                 if (!passp2) {
                     try {
-                        $("#bench_test").remove()
+                        $("#bench_test").remove();
                         if ($("#dom_testarea").html() == "") {
                             $("#dom_delete").toggleClass("bc_sucess");
                         } else {
-                            $("#dom_delete").toggleClass("bc_fail")
+                            $("#dom_delete").toggleClass("bc_fail");
                         }
                     } catch (e) {
-                        $("#dom_delete").toggleClass("bc_fail")
+                        $("#dom_delete").toggleClass("bc_fail");
                     }
                 }
                 //Part3
                 try {
-                    var bkcb = clipboardData.getData("text")
-                    clipboardData.setData("text", "ranranru")
+                    var bkcb = clipboardData.getData("text");
+                    clipboardData.setData("text", "ranranru");
                     if (clipboardData.getData("text") == "ranranru") {
-                        $("#cb_manage").toggleClass("bc_sucess")
+                        $("#cb_manage").toggleClass("bc_sucess");
                     } else {
-                        $("#cb_manage").toggleClass("bc_fail")
+                        $("#cb_manage").toggleClass("bc_fail");
                     }
-                    clipboardData.setData("text", bkcb)
+                    clipboardData.setData("text", bkcb);
                 } catch (e) {
-                    $("#cb_manage").toggleClass("bc_fail")
+                    $("#cb_manage").toggleClass("bc_fail");
                 }
                 //Part4
                 try {
                     if (localStorage) {
-                        localStorage.setItem("test", "ranranru")
+                        localStorage.setItem("test", "ranranru");
                         if (localStorage.getItem("test") == "ranranru") {
-                            $("#ls_manage").toggleClass("bc_sucess")
+                            $("#ls_manage").toggleClass("bc_sucess");
                         } else {
-                            $("#ls_manage").toggleClass("bc_fail")
+                            $("#ls_manage").toggleClass("bc_fail");
                         }
-                        localStorage.setItem("test", "")
+                        localStorage.setItem("test", "");
                     } else {
-                        $("#ls_manage").toggleClass("bc_fail")
+                        $("#ls_manage").toggleClass("bc_fail");
                     }
                 } catch (e) {
-                    $("#ls_manage").toggleClass("bc_fail")
+                    $("#ls_manage").toggleClass("bc_fail");
                 }
 
                 //Part5
                 try {
                     if (sessionStorage) {
-                        sessionStorage.setItem("test", "ranranru")
+                        sessionStorage.setItem("test", "ranranru");
                         if (sessionStorage.getItem("test") == "ranranru") {
-                            $("#ss_manage").toggleClass("bc_sucess")
+                            $("#ss_manage").toggleClass("bc_sucess");
                         } else {
-                            $("#ss_manage").toggleClass("bc_fail")
+                            $("#ss_manage").toggleClass("bc_fail");
                         }
                     } else {
-                        $("#ss_manage").toggleClass("bc_fail")
+                        $("#ss_manage").toggleClass("bc_fail");
                     }
-                    sessionStorage.setItem("test", "")
+                    sessionStorage.setItem("test", "");
                 } catch (e) {
-                    $("#ss_manage").toggleClass("bc_fail")
+                    $("#ss_manage").toggleClass("bc_fail");
                 }
                 //Part6
                 try {
                     if (navigator.geolocation) {
-                        $("div#gp_alert").attr("hidden", false)
+                        $("div#gp_alert").attr("hidden", false);
                         navigator.geolocation.getCurrentPosition(function (e) {
-                            $("div#gp_read").toggleClass("bc_sucess")
-                            $("div#gp_alert").attr("hidden", true)
+                            $("div#gp_read").toggleClass("bc_sucess");
+                            $("div#gp_alert").attr("hidden", true);
                         }, function (e) {
-                            $("#gp_read").toggleClass("bc_fail")
-                            $("div#gp_alert").attr("hidden", true)
-                        }, { enableHighAccuracy: true })
+                            $("#gp_read").toggleClass("bc_fail");
+                            $("div#gp_alert").attr("hidden", true);
+                        }, { enableHighAccuracy: true });
                     } else {
-                        $("#gp_read").toggleClass("bc_fail")
+                        $("#gp_read").toggleClass("bc_fail");
                     }
                 } catch (e) {
-                    $("#gp_read").toggleClass("bc_fail")
+                    $("#gp_read").toggleClass("bc_fail");
                 }
                 //Part7
                 try {
-                    document.cookie = "test=ranranru"
+                    document.cookie = "test=ranranru";
                     document.cookie.split("; ").forEach(function (e) {
                         if (e == "test=ranranru") {
-                            $("#ck_manage").toggleClass("bc_sucess")
+                            $("#ck_manage").toggleClass("bc_sucess");
                         } else {
-                            $("#ck_manage").toggleClass("bc_fail")
+                            $("#ck_manage").toggleClass("bc_fail");
                         }
                     })
-                    document.cookie = "test="
+                    document.cookie = "test=";
                 } catch (e) {
-                    $("#ck_manage").toggleClass("bc_fail")
+                    $("#ck_manage").toggleClass("bc_fail");
                 }
                 //Part8,9,10,11
                 try {
                     if (!createXMLHttpRequest()) {
-                        $("div[id^=\"aj_\"]").toggleClass("bc_fail")
+                        $("div[id^=\"aj_\"]").toggleClass("bc_fail");
                     } else {
                         //Part8
                         try {
@@ -240,16 +240,16 @@
                                 cache: false,
                                 dataType: "text",
                                 error: function (a, b, c) {
-                                    $("#aj_sync").toggleClass("bc_fail")
+                                    $("#aj_sync").toggleClass("bc_fail");
                                 },
                                 success: function (a, b) {
-                                    $("#aj_sync").toggleClass("bc_sucess")
+                                    $("#aj_sync").toggleClass("bc_sucess");
                                 },
                                 type: "GET",
                                 url: getdata
-                            })
+                            });
                         } catch (e) {
-                            $("#aj_sync").toggleClass("bc_fail")
+                            $("#aj_sync").toggleClass("bc_fail");
                         }
                         //Part9
                         try {
@@ -258,16 +258,16 @@
                                 cache: false,
                                 dataType: "text",
                                 error: function (a, b, c) {
-                                    $("#aj_async").toggleClass("bc_fail")
+                                    $("#aj_async").toggleClass("bc_fail");
                                 },
                                 success: function (a, b) {
-                                    $("#aj_async").toggleClass("bc_sucess")
+                                    $("#aj_async").toggleClass("bc_sucess");
                                 },
                                 type: "GET",
                                 url: getdata
-                            })
+                            });
                         } catch (e) {
-                            $("#aj_async").toggleClass("bc_fail")
+                            $("#aj_async").toggleClass("bc_fail");
                         }
                         //Part10
                         try {
@@ -275,17 +275,17 @@
                                 cache: false,
                                 dataType: "text",
                                 error: function (a, b, c) {
-                                    $("#aj_sync_cd").toggleClass("bc_fail")
+                                    $("#aj_sync_cd").toggleClass("bc_fail");
                                 },
                                 success: function (a, b) {
-                                    $("#aj_sync_cd").toggleClass("bc_sucess")
+                                    $("#aj_sync_cd").toggleClass("bc_sucess");
                                 },
                                 type: "GET",
                                 url: "http://nao20010128.web.fc2.com/index.html",
                                 crossDomain: true
-                            })
+                            });
                         } catch (e) {
-                            $("#aj_sync_cd").toggleClass("bc_fail")
+                            $("#aj_sync_cd").toggleClass("bc_fail");
                         }
                         //Part11
                         try {
@@ -294,21 +294,21 @@
                                 cache: false,
                                 dataType: "text",
                                 error: function (a, b, c) {
-                                    $("#aj_async_cd").toggleClass("bc_fail")
+                                    $("#aj_async_cd").toggleClass("bc_fail");
                                 },
                                 success: function (a, b) {
-                                    $("#aj_async_cd").toggleClass("bc_sucess")
+                                    $("#aj_async_cd").toggleClass("bc_sucess");
                                 },
                                 type: "GET",
                                 url: "http://nao20010128.web.fc2.com/index.html",
                                 crossDomain: true
-                            })
+                            });
                         } catch (e) {
-                            $("#aj_async_cd").toggleClass("bc_fail")
+                            $("#aj_async_cd").toggleClass("bc_fail");
                         }
                     }
                 } catch (e) {
-                    $("div[id^=\"aj_\"]").toggleClass("bc_fail")
+                    $("div[id^=\"aj_\"]").toggleClass("bc_fail");
                 }
                 //Part12
                 try {
@@ -319,24 +319,24 @@
                             res[i] = data[i] & 13
                         }
                         if (arrayEquals(res, e.data)) {
-                            $("#ww_manage").toggleClass("bc_sucess")
+                            $("#ww_manage").toggleClass("bc_sucess");
                         } else {
-                            $("#ww_manage").toggleClass("bc_atte")
+                            $("#ww_manage").toggleClass("bc_atte");
                         }
                     }
                     worker.onerror = function (e) {
-                        $("#ww_manage").toggleClass("bc_fail")
+                        $("#ww_manage").toggleClass("bc_fail");
                     }
                     worker.postMessage(data);
                 } catch (e) {
-                    $("#ww_manage").toggleClass("bc_fail")
+                    $("#ww_manage").toggleClass("bc_fail");
                 }
                 //Part13
                 try {
-                    navigator.vibrate()
-                    $("#vibrate_test").toggleClass("bc_sucess")
+                    navigator.vibrate();
+                    $("#vibrate_test").toggleClass("bc_sucess");
                 } catch (e) {
-                    $("#vibrate_test").toggleClass("bc_fail")
+                    $("#vibrate_test").toggleClass("bc_fail");
                 }
             }
         </script>
