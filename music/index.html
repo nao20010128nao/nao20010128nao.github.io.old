@@ -4,45 +4,67 @@
 <head>
     <meta charset="utf-8" />
     <title>Music Player</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var players = new Array(6);
+            for (var i = 1; i <= 6; i++)
+                players[i] = document.getElementById("audio_" + i);
+            $("#sall").click(function () {
+                for (var m in players) {
+                    m.pause();
+                    m.currentTime = 0;
+                }
+            });
+            $("#pall").click(function () {
+                for (var m in players) {
+                    m.play();
+                }
+            });
+        });
+    </script>
 </head>
 <body>
+    <button id="sall">Stop All</button>
+    <button id="pall">Play All</button>
+    <hr />
     <p>Music 1</p><br />
-    <audio controls loop>
+    <audio controls loop id="audio_1">
         <source src="/music/1/mp3.mp3" type="audio/mp3" />
         <source src="/music/1/ogg.ogg" type="audio/ogg" />
         <source src="/music/1/wav.wav" type="audio/vnd.wave" />
     </audio>
     <hr />
     <p>Music 2</p><br />
-    <audio controls loop>
+    <audio controls loop id="audio_2">
         <source src="/music/2/mp3.mp3" type="audio/mp3" />
         <source src="/music/2/ogg.ogg" type="audio/ogg" />
         <source src="/music/2/wav.wav" type="audio/vnd.wave" />
     </audio>
     <hr />
     <p>Music 3</p><br />
-    <audio controls loop>
+    <audio controls loop id="audio_3">
         <source src="/music/3/mp3.mp3" type="audio/mp3" />
         <source src="/music/3/ogg.ogg" type="audio/ogg" />
         <source src="/music/3/wav.wav" type="audio/vnd.wave" />
     </audio>
     <hr />
     <p>Music 4</p><br />
-    <audio controls loop>
+    <audio controls loop id="audio_4">
         <source src="/music/4/mp3.mp3" type="audio/mp3" />
         <source src="/music/4/ogg.ogg" type="audio/ogg" />
         <source src="/music/4/m4a.m4a" type="audio/mp4" />
     </audio>
     <hr />
     <p>Music 5</p><br />
-    <audio controls loop>
+    <audio controls loop id="audio_5">
         <source src="/music/5/mp3.mp3" type="audio/mp3" />
         <source src="/music/5/ogg.ogg" type="audio/ogg" />
         <source src="/music/5/wav.wav" type="audio/vnd.wave" />
     </audio>
     <hr />
     <p>Music 6</p><br />
-    <audio controls loop>
+    <audio controls loop id="audio_6">
         <source src="/music/6/mp3.mp3" type="audio/mp3" />
         <source src="/music/6/ogg.ogg" type="audio/ogg" />
         <source src="/music/6/m4a.m4a" type="audio/mp4" />
