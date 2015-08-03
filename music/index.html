@@ -12,13 +12,13 @@
                 players[i] = document.getElementById("audio_" + i);
             $("#sall").click(function () {
                 for (var m in players) {
-                    m.pause();
-                    m.currentTime = 0;
+                    players[m].pause();
+                    players[m].currentTime = 0;
                 }
             });
             $("#pall").click(function () {
                 for (var m in players) {
-                    m.play();
+                    players[m].play();
                 }
             });
         });
