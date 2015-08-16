@@ -8,7 +8,7 @@
     <script>
         $(function () {
             var players = new Array(6);
-            for (var i = 1; i <= 6; i++)
+            for (var i = 1; i <= 7; i++)
                 players[i] = document.getElementById("audio_" + i);
             $("#sall").click(function () {
                 for (var m in players) {
@@ -68,6 +68,13 @@
         <source src="/music/6/mp3.mp3" type="audio/mp3" />
         <source src="/music/6/ogg.ogg" type="audio/ogg" />
         <source src="/music/6/m4a.m4a" type="audio/mp4" />
+    </audio>
+    <hr />
+    <p>Music 7</p><br />
+    <audio controls loop id="audio_7">
+        <source src="/music/7/mp3.mp3" type="audio/mp3" />
+        <source src="/music/7/ogg.ogg" type="audio/ogg" />
+        <source src="/music/7/m4a.m4a" type="audio/mp4" />
     </audio>
     <hr />
 </body>
