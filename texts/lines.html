@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Text Repeating</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("button#start").click(function () {
+                var worker = new Worker("/texts/lines.js");
+                worker.addEventListener("onmessage", function (e) {
+                    var res = e.data;
+                    $("textarea#result").val(res.text);
+                });
+                worker.addEventListener("onerror", function (e) {
+                    alert("An error occured while making blank lines.");
+                });
+                var send = { lines: parseInt($("input#times").val()) };
+                worker.postMessage(send);
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>Blank Lines:</p>
+    <input id="times" form="aaa" value="10" type="range" />
+    <br />
+    <button id="start">↓START</button>
+    <p>Result Text:</p>
+    <textarea id="result"></textarea>
+</body>
+</html>
