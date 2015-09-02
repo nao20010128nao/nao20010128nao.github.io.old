@@ -7,9 +7,41 @@
         var timeOver = false;
         $(function () {
             setTimeout("setHref()", 20000);
+            $("#rule1").click(function () {
+                if ($("#rule1").prop("checked", false) === true)
+                    check();
+                return true;
+            });
+            $("#rule2").click(function () {
+                if ($("#rule2").prop("checked", false) === true)
+                    check();
+                return true;
+            });
+            $("#rule3").click(function () {
+                if ($("#rule3").prop("checked", false) === true)
+                    check();
+                return true;
+            });
+            $("#rule4").click(function () {
+                if ($("#rule4").prop("checked", false) === true)
+                    check();
+                return true;
+            });
         });
         function setHref() {
             timeOver = true;
+            check();
+        }
+        function check() {
+            var ok = true;
+            ok &= $("#rule1").prop("checked", false) === true;
+            ok &= $("#rule2").prop("checked", false) === true;
+            ok &= $("#rule3").prop("checked", false) === true;
+            ok &= $("#rule4").prop("checked", false) === true;
+            ok &= timeOver;
+            if (ok) {
+                ("a#next").attr("href", "/kichiku-server/last.html");
+            }
         }
     </script>
     <style>
@@ -26,14 +58,14 @@
         <li>MODやチートクライアント(不正改造クライアント)、及びMinecraft:PEではないアプリでの接続は禁止です。</li>
         <li>もちろん荒らさないで下さい。いいね?</li>
     </ol>
-    <div><input id="rule1" form="agreemain" class="center" type="checkbox" value="false" title="同意する" /><p>同意する</p></div>
+    <div class="center"><input id="rule1" class="rulecheck" form="agreemain" type="checkbox" value="false" title="同意する" /><span>同意する</span></div>
     <br />
     <h2 class="center">鬼畜サーバー　ルール　第二章</h2>
     <ol class="center">
         <li>すべての情報のやり取りは、絶対にサーバー内で行って下さい。</li>
         <li>LobiやGoogle+で情報のやり取りをするのは禁止です。</li>
     </ol>
-    <div><input id="rule2" form="agreemain" class="center" type="checkbox" value="false" title="同意する" /><p>同意する</p></div>
+    <div class="center"><input id="rule2" class="rulecheck" form="agreemain" type="checkbox" value="false" title="同意する" /><span>同意する</span></div>
     <br />
     <h2 class="center">鬼畜サーバー　ルール　第三章</h2>
     <ol class="center">
@@ -42,14 +74,15 @@
         <li>サーバー内のプレイヤーと助け合ってください。</li>
         <li>サーバーのクラッシュ以外で何が起こっても保証しません。</li>
     </ol>
-    <div><input id="rule3" form="agreemain" class="center" type="checkbox" value="false" title="同意する" /><p>同意する</p></div>
+    <div class="center"><input id="rule3" class="rulecheck" form="agreemain" type="checkbox" value="false" title="同意する" /><span>同意する</span></div>
     <br />
     <h2 class="center">鬼畜サーバー　ルール　第四章</h2>
     <ol class="center">
         <li>脆弱性(例:OPが無くともサーバーを停止できる、など)を発見したら、nao20010128nao(<a href="http://twitter.com/M0_84">Twitter</a> <a href="https://plus.google.com/103975395128235901714">Google+</a>)までご一報ください。</li>
         <li>ここにないルールは勝手に決めて構いません。サーバーの主は一切制限しません。ただし、ここの絶対ルールに乗っとるルールでお願いします。</li>
     </ol>
-    <div><input id="rule4" form="agreemain" class="center" type="checkbox" value="false" title="同意する" /><p>同意する</p></div>
+    <div class="center"><input id="rule4" class="rulecheck" form="agreemain" type="checkbox" value="false" title="同意する" /><span>同意する</span></div>
+    <br />
     <div class="center"><a href="/kichiku-server/index.html">戻る</a>　　　　　<a id="next">次へ</a></div>
 </body>
 </html>
