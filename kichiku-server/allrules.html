@@ -8,24 +8,16 @@
         $(function () {
             setTimeout("setHref()", 20000);
             $("#rule1").click(function () {
-                if ($("#rule1").prop("checked", false) === true)
-                    check();
-                return true;
+                check();
             });
             $("#rule2").click(function () {
-                if ($("#rule2").prop("checked", false) === true)
-                    check();
-                return true;
+                check();
             });
             $("#rule3").click(function () {
-                if ($("#rule3").prop("checked", false) === true)
-                    check();
-                return true;
+                check();
             });
             $("#rule4").click(function () {
-                if ($("#rule4").prop("checked", false) === true)
-                    check();
-                return true;
+                check();
             });
         });
         function setHref() {
@@ -40,7 +32,7 @@
             ok &= $("#rule4").prop("checked", false) === true;
             ok &= timeOver;
             if (ok) {
-                ("a#next").attr("href", "/kichiku-server/last.html");
+                $("a#next").attr("href", "/kichiku-server/last.html");
             }
         }
     </script>
